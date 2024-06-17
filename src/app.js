@@ -19,7 +19,7 @@ const app = express();
 
 // Enable CORS
 const corsOptions = {
-  origin: 'http://localhost:4200', // Frontend origin
+  origin: 'https://digiapi.vercel.app', // Frontend origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies to be sent
   allowedHeaders: 'Content-Type,Authorization', // Ensure these headers are allowed
