@@ -21,7 +21,7 @@ const app = express();
 
 // Enable CORS with a comprehensive set of options
 const corsOptions = {
-  origin: 'https://digiapi.vercel.app', // Frontend origin
+  origin: 'https://digicardui.vercel.app', // Frontend origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true, // Allow cookies to be sent
   allowedHeaders: 'Content-Type,Authorization', // Ensure these headers are allowed
