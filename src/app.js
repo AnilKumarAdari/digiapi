@@ -17,18 +17,21 @@ const path = require('path');
 
 const app = express();
 
-// Enable CORS
+// Enable CORS with a comprehensive set of options
 const corsOptions = {
   origin: 'https://digiapi.vercel.app', // Frontend origin
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true, // Allow cookies to be sent
   allowedHeaders: 'Content-Type,Authorization', // Ensure these headers are allowed
+  preflightContinue: false,
   optionsSuccessStatus: 204, // Some legacy browsers choke on 204
 };
 
 // Apply CORS middleware globally before other middleware
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Handle preflight requests
+
+// Handle preflight requests for all routes
+app.options('*', cors(corsOptions));
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
