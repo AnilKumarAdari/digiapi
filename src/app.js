@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 // Handle preflight requests for all routes
-app.options('*', cors(corsOptions));
+//app.options('*', cors(corsOptions));
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
