@@ -13,6 +13,7 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const path = require('path');
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.use(helmet());
 // Parse urlencoded request body and JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use('/', express.static(path.join(__dirname, 'public')));
 // Sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
