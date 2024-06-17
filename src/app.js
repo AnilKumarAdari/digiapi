@@ -46,7 +46,7 @@ app.use(helmet());
 // Parse urlencoded request body and JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 // Sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
