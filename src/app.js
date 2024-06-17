@@ -30,7 +30,13 @@ const corsOptions = {
 };
 
 // Apply CORS middleware globally before other middleware
-app.use(cors(corsOptions));
+app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
 
 // Handle preflight requests for all routes
 app.options('*', cors(corsOptions));
