@@ -1,3 +1,7 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
+/* eslint-disable prefer-template */
+/* eslint-disable no-unused-vars */
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const { authService, userService, tokenService, emailService, cardService } = require('../services');
