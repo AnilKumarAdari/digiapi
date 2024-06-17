@@ -5,7 +5,7 @@ const createCard = async (userBody) => {
 };
 
 const getCardByUserId = async (userId) => {
-  return Card.findOne({ userId: userId }).exec();
+  return Card.findOne({ userId }).exec();
 };
 
 module.exports = {
