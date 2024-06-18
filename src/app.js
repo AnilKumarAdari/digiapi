@@ -20,32 +20,20 @@ const logger = require('./config/logger');
 const app = express();
 
 // Enable CORS with a comprehensive set of options
-// const corsOptions = {
-//   origin: 'https://digicardui.vercel.app', // Frontend origin
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-//   credentials: true, // Allow cookies to be sent
-//   allowedHeaders: 'Content-Type,Authorization', // Ensure these headers are allowed
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204, // Some legacy browsers choke on 204
-// };
+const corsOptions = {
+  origin: 'https://digicardui.vercel.app', // Frontend origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  credentials: true, // Allow cookies to be sent
+  allowedHeaders: 'Content-Type,Authorization', // Ensure these headers are allowed
+  preflightContinue: false,
+  optionsSuccessStatus: 204, // Some legacy browsers choke on 204
+};
 
-// // Apply CORS middleware globally before other middleware
-// app.use(cors(corsOptions));
-// Allow any method from any host and log requests
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-  if ('OPTIONS' === req.method) {
-    res.sendStatus(200);
-  } else {
-    console.log(`${req.ip} ${req.method} ${req.url}`);
-    next();
-  }
-});
+// Apply CORS middleware globally before other middleware
+app.use(cors(corsOptions));
 
 // Handle preflight requests for all routes
-//app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
@@ -59,6 +47,7 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // app.use('/ui', express.static(path.join(__dirname, 'public')));
+
 // Sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
