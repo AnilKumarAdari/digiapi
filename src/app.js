@@ -70,7 +70,7 @@ app.use('/v1', routes);
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public'));
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Handle unknown API requests
