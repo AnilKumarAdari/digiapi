@@ -46,7 +46,6 @@ app.use(helmet());
 // Parse urlencoded request body and JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use('/ui', express.static(path.join(__dirname, 'public')));
 
 // Sanitize request data
 app.use(xss());
@@ -66,6 +65,13 @@ if (config.env === 'production') {
 
 // v1 API routes
 app.use('/v1', routes);
+// app.use('/ui', express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, '../public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 // Handle unknown API requests
 app.use((req, res, next) => {
